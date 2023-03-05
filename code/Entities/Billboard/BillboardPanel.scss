@@ -1,0 +1,16 @@
+BillboardPanel {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    color: black;
+    padding: 10px;
+
+    webpanel {
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -1,0 +1,63 @@
+{
+  "Title": "Road Rush",
+  "Type": "game",
+  "Org": "ninetyfour",
+  "Ident": "roadrush",
+  "Tags": null,
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": [],
+  "HasCode": true,
+  "CodePath": "/code/",
+  "Metadata": {
+    "MaxPlayers": 1,
+    "MinPlayers": 1,
+    "GameNetworkType": "Singleplayer",
+    "MapSelect": "Official",
+    "MapList": [
+      "ninetyfour.road_rush_map"
+    ],
+    "RankType": "None",
+    "PerMapRanking": false,
+    "LeaderboardType": "None",
+    "ProjectTemplate": null,
+    "CsProjName": "",
+    "Collision": {
+      "Defaults": {
+        "solid": "Collide",
+        "trigger": "Trigger",
+        "ladder": "Ignore",
+        "water": "Trigger"
+      },
+      "Pairs": [
+        {
+          "a": "solid",
+          "b": "solid",
+          "r": "Collide"
+        },
+        {
+          "a": "trigger",
+          "b": "playerclip",
+          "r": "Ignore"
+        },
+        {
+          "a": "solid",
+          "b": "trigger",
+          "r": "Trigger"
+        },
+        {
+          "a": "playerclip",
+          "b": "solid",
+          "r": "Collide"
+        }
+      ]
+    },
+    "ControlModes": {
+      "Keyboard": true
+    },
+    "Summary": "",
+    "Description": "",
+    "Public": true
+  }
+}
