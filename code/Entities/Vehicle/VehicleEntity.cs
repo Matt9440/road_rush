@@ -134,7 +134,7 @@ public partial class VehicleEntity : AnimatedEntity
 	private float SlowForVehicleInfront( float currentSpeed )
 	{
 		var verticalOffset = Vector3.Up * 20;
-		var forwardTrace = Trace.Ray( Position + verticalOffset, Position + verticalOffset + Rotation.Forward * 200f ).WithTag( "vehicle" ).Ignore( this ).Run();
+		var forwardTrace = Trace.Ray( Position + verticalOffset, Position + verticalOffset + Rotation.Forward * 140f ).WithTag( "vehicle" ).Ignore( this ).Run();
 
 		if ( forwardTrace.Entity?.Rotation.Forward == Rotation.Forward )
 		{
