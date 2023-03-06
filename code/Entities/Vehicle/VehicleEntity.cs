@@ -49,6 +49,8 @@ public partial class VehicleEntity : AnimatedEntity
 
 	private TimeSince TimeSinceLastHovered { get; set; }
 
+	private int VehiclesExisted { get; set; }
+
 	public override void Spawn()
 	{
 		base.Spawn();
@@ -68,6 +70,21 @@ public partial class VehicleEntity : AnimatedEntity
 		// Effects
 		CreatedParticles.Add( Particles.Create( "particles/vehicle_exhaust.vpcf", this, "exhaust" ) );
 		EngineSound = PlaySound( "engine_hum" );
+	}
+
+	public override void ClientSpawn()
+	{
+		base.ClientSpawn();
+
+		VehiclesExisted += 1;
+
+		// Instructions for freezing vehicles.
+		if ( VehiclesExisted == 1 )
+			DebugOverlay.Text( "I am the first vehicle", Position, Color.Red, 20 );
+
+		// Instructions for dragging vehicles.
+		if ( VehiclesExisted == 2 )
+			DebugOverlay.Text( "I am the second vehicle", Position, Color.Red, 20 );
 	}
 
 	[Event.Tick]
@@ -104,7 +121,31 @@ public partial class VehicleEntity : AnimatedEntity
 		var travelSpeed = TravelSpeed * PointsMultiplier;
 		travelSpeed *= DragSpeedMultiplier;
 
+		// Slow down speed to accomodate for the vehicle infront, if the vehicle is moved we can speed up again.
+		travelSpeed = SlowForVehicleInfront( travelSpeed );
+
 		Position = Position.LerpTo( Position + Rotation.Forward * 10f, travelSpeed * Time.Delta );
+	}
+
+	/// <summary>
+	/// Reduce speed for any vehicles infront of this vehicle, returns the original speed if no vehicles are infront.
+	/// </summary>
+	/// <param name="currentSpeed"></param>
+	/// <returns></returns>
+	private float SlowForVehicleInfront( float currentSpeed )
+	{
+		var verticalOffset = Vector3.Up * 20;
+		var forwardTrace = Trace.Ray( Position + verticalOffset, Position + verticalOffset + Rotation.Forward * 200f ).WithTag( "vehicle" ).Ignore( this ).Run();
+
+		if ( forwardTrace.Entity?.Rotation.Forward == Rotation.Forward )
+		{
+			var vehicleInfront = forwardTrace.Entity as VehicleEntity;
+
+			if ( vehicleInfront is not null )
+				return vehicleInfront.TravelSpeed;
+		}
+
+		return currentSpeed;
 	}
 
 	public static Vector3? HasCollided( Vector3 position, Rotation rotation, Entity ignore = null )
@@ -115,7 +156,7 @@ public partial class VehicleEntity : AnimatedEntity
 		var mins = rotation.Right * width / 2 + rotation.Backward * length / 2 + Vector3.Up * height;
 		var maxs = rotation.Left * width / 2 + rotation.Forward * length / 2;
 
-		var bboxTrace = Trace.Box( 2, position + mins, position + maxs ).WithTag( "vehicle" ).Ignore( ignore ).Run();
+		var bboxTrace = Trace.Box( 1, position + mins, position + maxs ).WithTag( "vehicle" ).Ignore( ignore ).Run();
 
 		if ( bboxTrace.Entity is not null )
 			return bboxTrace.HitPosition;
