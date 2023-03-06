@@ -30,6 +30,9 @@ public partial class VehicleEntity : AnimatedEntity
 	public float DragSpeedMultiplier { get; set; } = 1f;
 
 	[Net]
+	public TimeSince TimeSinceVehicleSpawned { get; set; }
+
+	[Net]
 	public bool IsFrozen { get; set; }
 
 	[Net]
@@ -51,19 +54,19 @@ public partial class VehicleEntity : AnimatedEntity
 		base.Spawn();
 
 		SetupPhysicsFromModel( PhysicsMotionType.Keyframed );
-
+		SetMaterialOverride( Material.Load( Game.Random.FromList( PossibleSkins ) ), "skin" );
 		EnableAllCollisions = true;
 
 		Tags.Add( "vehicle" );
 		Tags.Add( "solid" );
 
-		SetMaterialOverride( Material.Load( Game.Random.FromList( PossibleSkins ) ), "skin" );
-
 		TravelSpeed = DefaultSpeed;
 		TravelSpeed *= Game.Random.Float( 1, 1.3f );
 
-		CreatedParticles.Add( Particles.Create( "particles/vehicle_exhaust.vpcf", this, "exhaust" ) );
+		TimeSinceVehicleSpawned = 0;
 
+		// Effects
+		CreatedParticles.Add( Particles.Create( "particles/vehicle_exhaust.vpcf", this, "exhaust" ) );
 		EngineSound = PlaySound( "engine_hum" );
 	}
 
@@ -135,6 +138,9 @@ public partial class VehicleEntity : AnimatedEntity
 
 	public virtual void OnClick()
 	{
+		if ( !IsFrozen && TimeSinceVehicleSpawned < 1 )
+			return;
+
 		IsFrozen = !IsFrozen;
 		HasBeenDragged = false;
 
