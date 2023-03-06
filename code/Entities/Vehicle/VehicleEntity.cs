@@ -41,6 +41,9 @@ public partial class VehicleEntity : AnimatedEntity
 	[Net]
 	public bool VehicleCollided { get; set; }
 
+	[Net]
+	public int VehicleId { get; set; }
+
 	private List<Particles> CreatedParticles { get; set; } = new();
 
 	private Sound EngineSound { get; set; }
@@ -48,8 +51,6 @@ public partial class VehicleEntity : AnimatedEntity
 	private Glow GlowComponent { get; set; }
 
 	private TimeSince TimeSinceLastHovered { get; set; }
-
-	private int VehiclesExisted { get; set; }
 
 	public override void Spawn()
 	{
@@ -76,14 +77,12 @@ public partial class VehicleEntity : AnimatedEntity
 	{
 		base.ClientSpawn();
 
-		VehiclesExisted += 1;
-
 		// Instructions for freezing vehicles.
-		if ( VehiclesExisted == 1 )
+		if ( VehicleId == 1 )
 			DebugOverlay.Text( "I am the first vehicle", Position, Color.Red, 20 );
 
 		// Instructions for dragging vehicles.
-		if ( VehiclesExisted == 2 )
+		if ( VehicleId == 2 )
 			DebugOverlay.Text( "I am the second vehicle", Position, Color.Red, 20 );
 	}
 

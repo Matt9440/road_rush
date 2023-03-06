@@ -18,6 +18,9 @@ public partial class GameRound : BaseNetworkable
 	[Net]
 	public GameState State { get; protected set; }
 
+	[Net]
+	public int TotalVehiclesSpawned { get; set; }
+
 	public TimeSince TimeSinceLastVehicleSpawn { get; set; }
 
 	public GameRound()

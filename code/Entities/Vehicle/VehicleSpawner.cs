@@ -25,6 +25,12 @@ public partial class VehicleSpawner : Entity
 		vehicle.Transform = Transform;
 		vehicle.PointsMultiplier = Math.Clamp( (float)GameRound.Instance?.Points / 30, 1, 5 );
 
+		if ( GameRound.Instance is not null )
+		{
+			GameRound.Instance.TotalVehiclesSpawned += 1;
+			vehicle.VehicleId = GameRound.Instance.TotalVehiclesSpawned;
+		}
+
 		TimeSinceLastSpawn = 0;
 	}
 }
