@@ -44,6 +44,8 @@ public partial class VehicleEntity : AnimatedEntity
 	[Net]
 	public int VehicleId { get; set; }
 
+	private InstructionPanel InstructionPanel { get; set; }
+
 	private List<Particles> CreatedParticles { get; set; } = new();
 
 	private Sound EngineSound { get; set; }
@@ -79,11 +81,11 @@ public partial class VehicleEntity : AnimatedEntity
 
 		// Instructions for freezing vehicles.
 		if ( VehicleId == 1 )
-			DebugOverlay.Text( "I am the first vehicle", Position, Color.Red, 20 );
+			InstructionPanel = new InstructionPanel( this, "Click to stop / start", Vector3.Up * 140 );
 
 		// Instructions for dragging vehicles.
 		if ( VehicleId == 2 )
-			DebugOverlay.Text( "I am the second vehicle", Position, Color.Red, 20 );
+			InstructionPanel = new InstructionPanel( this, "Drag to zoom", Vector3.Up * 140 );
 	}
 
 	[Event.Tick]
@@ -205,6 +207,8 @@ public partial class VehicleEntity : AnimatedEntity
 			particle.Destroy( true );
 
 		EngineSound.Stop();
+
+		InstructionPanel?.Delete();
 	}
 
 	public static VehicleEntity FromPrefab( string prefabName )

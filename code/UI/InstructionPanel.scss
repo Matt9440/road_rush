@@ -1,0 +1,19 @@
+InstructionPanel {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    font-size: 200px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+
+    label {
+        font-family: Poppins;
+        color: white;
+        text-shadow: 0px 0px 6px black;
+        padding: 10px 80px 10px 80px;
+        background-color: #157ad2;
+        border-radius: 60px;
+        border-bottom: 40px solid #145a97;
+    }
+}

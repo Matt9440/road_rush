@@ -3,6 +3,7 @@ global using RoadRush.Entities;
 global using RoadRush.UI;
 global using Sandbox;
 global using Sandbox.UI;
+global using Sandbox.UI.Construct;
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;
