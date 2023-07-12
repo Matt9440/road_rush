@@ -22,7 +22,15 @@ public partial class AwardPointsTrigger : BaseTrigger
 		// Award the player a point.
 		GameRound.AwardPoints( 1 );
 
+		UpdatePointStats();
+
 		// Destroy the vehicle.
 		vehicle.Delete();
+	}
+
+	[ClientRpc]
+	public static void UpdatePointStats()
+	{
+		Sandbox.Services.Stats.Increment( "points", 1 );
 	}
 }

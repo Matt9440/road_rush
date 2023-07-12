@@ -1,42 +1,22 @@
-// THIS FILE IS AUTO-GENERATED
-
-Layer0
+"Layer0"
 {
-	shader "complex.shader"
-
-	//---- PBR ----
-	F_METALNESS_TEXTURE 1
-	F_SPECULAR 1
-
-	//---- Ambient Occlusion ----
-	g_flAmbientOcclusionDirectDiffuse "0.000"
-	g_flAmbientOcclusionDirectSpecular "0.000"
-	TextureAmbientOcclusion "models/vehicle_01/materials/em_cts_vehicle_01_ior.jpg"
-
-	//---- Color ----
-	g_flModelTintAmount "1.000"
-	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TextureColor "models/vehicle_01/materials/em_cts_vehicle_01_diffuse.jpg"
-
-	//---- Fade ----
-	g_flFadeExponent "1.000"
-
-	//---- Fog ----
-	g_bFogEnabled "1"
-
-	//---- Metalness ----
-	TextureMetalness "models/vehicle_01/materials/em_cts_vehicle_01_glossiness.jpg"
-
-	//---- Normal ----
-	TextureNormal "models/vehicle_01/materials/em_cts_vehicle_01_normal.jpg"
-
-	//---- Roughness ----
-	TextureRoughness "models/vehicle_01/materials/em_cts_vehicle_01_height.jpg"
-
-	//---- Texture Coordinates ----
-	g_nScaleTexCoordUByModelScaleAxis "0"
-	g_nScaleTexCoordVByModelScaleAxis "0"
-	g_vTexCoordOffset "[0.000 0.000]"
-	g_vTexCoordScale "[1.000 1.000]"
-	g_vTexCoordScrollSpeed "[0.000 0.000]"
+	"shader"		"shaders/complex.shader"
+	"F_METALNESS_TEXTURE"		"1"
+	"F_SPECULAR"		"1"
+	"g_flAmbientOcclusionDirectDiffuse"		"0.000000"
+	"g_flAmbientOcclusionDirectSpecular"		"0.000000"
+	"TextureAmbientOcclusion"		"models/vehicle_01/materials/em_cts_vehicle_01_ior.jpg"
+	"g_flModelTintAmount"		"1.000000"
+	"g_vColorTint"		"[1.000000 1.000000 1.000000 0.000000]"
+	"TextureColor"		"models/vehicle_01/materials/em_cts_vehicle_01_diffuse.jpg"
+	"g_flFadeExponent"		"1.000000"
+	"g_bFogEnabled"		"1"
+	"TextureMetalness"		"models/vehicle_01/materials/em_cts_vehicle_01_glossiness.jpg"
+	"TextureNormal"		"models/vehicle_01/materials/em_cts_vehicle_01_normal.jpg"
+	"TextureRoughness"		"models/vehicle_01/materials/em_cts_vehicle_01_height.jpg"
+	"g_nScaleTexCoordUByModelScaleAxis"		"0"
+	"g_nScaleTexCoordVByModelScaleAxis"		"0"
+	"g_vTexCoordOffset"		"[0.000 0.000]"
+	"g_vTexCoordScale"		"[1.000 1.000]"
+	"g_vTexCoordScrollSpeed"		"[0.000 0.000]"
 }

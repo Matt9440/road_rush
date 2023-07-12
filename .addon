@@ -17,7 +17,7 @@
     "MaxPlayers": 1,
     "MinPlayers": 1,
     "GameNetworkType": "Singleplayer",
-    "MapSelect": "Official",
+    "MapSelect": "Hidden",
     "MapList": [
       "ninetyfour.road_rush_map"
     ],
@@ -61,6 +61,7 @@
     },
     "Summary": "",
     "Description": "",
-    "Public": true
+    "Public": true,
+    "TickRate": 50
   }
 }

@@ -118,6 +118,9 @@ partial class Player : AnimatedEntity
 		{
 			LastClickedVehicle.OnClick();
 
+			if ( Game.IsClient )
+				Sandbox.Services.Stats.Increment( "stopped", 1 );
+
 			LastClickedVehicle = null;
 
 			return;
@@ -129,6 +132,9 @@ partial class Player : AnimatedEntity
 		if ( Input.Released( InputButton.PrimaryAttack ) && TimeSinceMouseDown > 0.45f || dragDistance > 50 )
 		{
 			LastClickedVehicle.OnDragged();
+
+			if ( Game.IsClient )
+				Sandbox.Services.Stats.Increment( "dragged", 1 );
 
 			LastClickedVehicle = null;
 

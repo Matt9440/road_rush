@@ -57,6 +57,9 @@ public partial class GameRound : BaseNetworkable
 			return;
 
 		Instance.Points += amount;
+
+		if ( Game.IsClient )
+			Sandbox.Services.Stats.Increment( "points", 1 );
 	}
 
 	public void Simulate( IClient cl )
