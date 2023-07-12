@@ -7,9 +7,12 @@
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [],
+  "Resources": null,
+  "MenuResources": null,
   "HasCode": true,
   "CodePath": "/code/",
+  "PackageReferences": [],
+  "EditorReferences": null,
   "Metadata": {
     "MaxPlayers": 1,
     "MinPlayers": 1,
